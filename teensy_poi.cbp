@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="teensy_poi" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="core\tlibcpp\;" />
+		<MakeCommands>
+			<Build command="$make -f $makefile " />
+			<CompileFile command="$make -f $makefile $file" />
+			<Clean command="$make -f $makefile clean" />
+			<DistClean command="$make -f $makefile distclean$target" />
+			<AskRebuildNeeded command="$make -q -f $makefile $target" />
+			<SilentBuild command="$make -f $makefile  &gt; $(CMD_NULL)" />
+		</MakeCommands>
+		<Build>
+			<Target title="Release">
+				<Option output="teensy_poi" prefix_auto="1" extension_auto="1" />
+				<Option object_output="build/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+				<MakeCommands>
+					<Build command="$make -f $makefile" />
+					<CompileFile command="$make -f $makefile $file" />
+					<Clean command="$make -f $makefile clean" />
+					<DistClean command="$make -f $makefile distclean$target" />
+					<AskRebuildNeeded command="$make -q -f $makefile $target" />
+					<SilentBuild command="$make -f $makefile &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Makefile" />
+		<Unit filename="core/libcpp/function.hpp" />
+		<Unit filename="core/libcpp/modulo_counter.hpp" />
+		<Unit filename="core/libcpp/numeric.hpp" />
+		<Unit filename="core/libcpp/polymorphic_ptr.hpp" />
+		<Unit filename="core/libcpp/sample_buffer.hpp" />
+		<Unit filename="core/libcpp/type_traits.hpp" />
+		<Unit filename="core/libcpp/value_table.hpp" />
+		<Unit filename="core/libcpp/variant.hpp" />
+		<Unit filename="core/mk20dx128.ld" />
+		<Unit filename="core/mk20dx256.ld" />
+		<Unit filename="core/mk66fx1m0.ld" />
+		<Unit filename="core/mkl26z64.ld" />
+		<Unit filename="core/nonstd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core/teensy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core/teensy.h" />
+		<Unit filename="core/tlibcpp/debounce.hpp" />
+		<Unit filename="core/tlibcpp/null_pin.hpp" />
+		<Unit filename="core/tlibcpp/nvic.hpp" />
+		<Unit filename="core/tlibcpp/periodic.hpp" />
+		<Unit filename="core/tlibcpp/pin.hpp" />
+		<Unit filename="core/tlibcpp/pingroup.hpp" />
+		<Unit filename="core/tlibcpp/ports.hpp" />
+		<Unit filename="core/tlibcpp/teensy_pins.hpp" />
+		<Unit filename="core/tstdlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core/tstdlib.h" />
+		<Unit filename="core/usb_desc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core/usb_desc.h" />
+		<Unit filename="core/usb_dev.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core/usb_dev.h" />
+		<Unit filename="core/usb_mem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core/usb_mem.h" />
+		<Unit filename="core/usb_serial.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="core/usb_serial.h" />
+		<Unit filename="core/util/atomic.h" />
+		<Unit filename="libs/Analog/Analog.h" />
+		<Unit filename="libs/DMAChannel/DMAChannel.cpp" />
+		<Unit filename="libs/DMAChannel/DMAChannel.h" />
+		<Unit filename="libs/DmaSpi/DmaSpi.h" />
+		<Unit filename="libs/I2C/I2C.cpp" />
+		<Unit filename="libs/I2C/I2C.h" />
+		<Unit filename="libs/I2Cdev/I2Cdev.h" />
+		<Unit filename="libs/MPU6050/MPU6050.h" />
+		<Unit filename="libs/MPU6050/MPU6050_6Axis_MotionApps20.h">
+			<Option virtualFolder="core/tlibcpp/" />
+		</Unit>
+		<Unit filename="libs/MPU6050/MPU6050_dmp41.cpp" />
+		<Unit filename="libs/MPU6050/MPU6050_dmp41_impl.h" />
+		<Unit filename="libs/MPU6050/MPU6050_impl.h" />
+		<Unit filename="libs/MPU6050/helper_3dmath.h" />
+		<Unit filename="libs/SPIFlash/SPIFlash.h" />
+		<Unit filename="libs/SPI/SPI.h" />
+		<Unit filename="libs/Snooze/Snooze.cpp" />
+		<Unit filename="libs/Snooze/Snooze.h" />
+		<Unit filename="libs/Snooze/bitband.h" />
+		<Unit filename="libs/Snooze/cmp.h" />
+		<Unit filename="libs/Snooze/cpu.h" />
+		<Unit filename="libs/Snooze/digital.h" />
+		<Unit filename="libs/Snooze/kinetis_ext.h" />
+		<Unit filename="libs/Snooze/llwu.h" />
+		<Unit filename="libs/Snooze/lptmr.h" />
+		<Unit filename="libs/Snooze/lvd.h" />
+		<Unit filename="libs/Snooze/mcg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libs/Snooze/mcg.h" />
+		<Unit filename="libs/Snooze/peripheral.h" />
+		<Unit filename="libs/Snooze/rtc.h" />
+		<Unit filename="libs/Snooze/smc.h" />
+		<Unit filename="libs/Snooze/tsi.h" />
+		<Unit filename="libs/Snooze/util.h" />
+		<Unit filename="src/animation_flash.hpp" />
+		<Unit filename="src/animation_waves.hpp" />
+		<Unit filename="src/button.hpp" />
+		<Unit filename="src/colorwheel.hpp" />
+		<Unit filename="src/config.hpp" />
+		<Unit filename="src/debug.hpp" />
+		<Unit filename="src/flash.hpp" />
+		<Unit filename="src/io_service.hpp" />
+		<Unit filename="src/led_algorithm.hpp" />
+		<Unit filename="src/leds.hpp" />
+		<Unit filename="src/manager.hpp" />
+		<Unit filename="src/maths.hpp" />
+		<Unit filename="src/mode_off.hpp" />
+		<Unit filename="src/mode_play.hpp" />
+		<Unit filename="src/mode_program.hpp" />
+		<Unit filename="src/motion.hpp" />
+		<Unit filename="src/power.hpp" />
+		<Unit filename="src/protocol.hpp" />
+		<Unit filename="src/random.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/random.h" />
+		<Unit filename="src/selftest.hpp" />
+		<Unit filename="src/status.hpp" />
+		<Unit filename="src/stopwatch.hpp" />
+		<Unit filename="src/teensy_poi.cpp" />
+		<Unit filename="src/usb_serial.hpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

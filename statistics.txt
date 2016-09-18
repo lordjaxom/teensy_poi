@@ -1,0 +1,8 @@
+compiled @ -O2
+
+read frame (288 bytes) and reverse-copy    ~ 415 us
+send frame to leds @ 8 MHz                 ~ 450 us
+                   @ 10 MHz                ~ 450 us
+                   @ 12 MHz (unstable)     ~ 235 us
+motion query with ISR                      ~ 890 us
+motion query with IMM                      ~ 790 us
