@@ -241,7 +241,7 @@ namespace SPIDetail {
 		static uint8_t constexpr volatile* c2 = &SPI1_C2;
 		static uint8_t constexpr volatile* br = &SPI1_BR;
 		static uint8_t constexpr volatile* dl = &SPI1_DL;
-		static uint8_t constexpr volatile* dh_= &SPI1_DH;
+		static uint8_t constexpr volatile* dh = &SPI1_DH;
 		static uint8_t constexpr volatile* s = &SPI1_S;
 	};
 
@@ -363,7 +363,7 @@ public:
 
 	// After performing a group of transfers and releasing the chip select
 	// signal, this function allows others to access the SPI bus
-	void endTransaction(void) {
+	void endTransaction() {
 		if (interruptMask_) {
 			NVIC_ISER0 = interruptSave_;
 		}

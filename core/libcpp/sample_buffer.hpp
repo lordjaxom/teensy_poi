@@ -1,7 +1,7 @@
 #ifndef LIBCPP_SAMPLE_BUFFER_HPP
 #define LIBCPP_SAMPLE_BUFFER_HPP
 
-#include <algorithm>
+#include <numeric>
 #include <utility>
 
 #include <libcpp/modulo_counter.hpp>

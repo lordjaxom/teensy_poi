@@ -96,7 +96,7 @@ namespace tp {
 	private:
 		void next()
 		{
-		    modes_.emplace( modes_ ? ( modes_.index() + 1 ) % sizeof...( TModes< Manager > ) : 0, *this );
+		    modes_.emplace( modes_ ? ( modes_.index() + 1 ) % sizeof...( TModes ) : 0, *this );
 		}
 
 		Stopwatch stopwatch_;

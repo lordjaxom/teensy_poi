@@ -48,7 +48,7 @@ LIBSPATH = libs
 #************************************************************************
 
 # CPPFLAGS = compiler options for C and C++
-CPPFLAGS = -O2 -Wall -mthumb -ffunction-sections -fdata-sections -nostdlib -MMD $(OPTIONS) -DF_CPU=$(TEENSY_CORE_SPEED) -Isrc -I$(COREPATH) -IC:\Users\lordjaxom\Programme\MinGW\include
+CPPFLAGS = -Os -Wall -mthumb -ffunction-sections -fdata-sections -nostdlib -MMD $(OPTIONS) -DF_CPU=$(TEENSY_CORE_SPEED) -Isrc -I$(COREPATH) -IC:\Users\lordjaxom\Programme\MinGW\include
 
 # compiler options for C++ only
 CXXFLAGS = -std=c++11 -felide-constructors -fno-exceptions -fno-rtti
@@ -57,7 +57,7 @@ CXXFLAGS = -std=c++11 -felide-constructors -fno-exceptions -fno-rtti
 CFLAGS = -std=c11
 
 # linker options
-LDFLAGS = -O2 -Wl,--gc-sections,--relax -mthumb --specs=nano.specs -Wl,-Map=$(BUILDDIR)/$(TARGET).map
+LDFLAGS = -Os -Wl,--gc-sections,--relax -mthumb --specs=nano.specs -Wl,-Map=$(BUILDDIR)/$(TARGET).map
 
 # additional libraries to link
 LIBS = -lm
@@ -159,7 +159,7 @@ $(LIBS_CXXOBJECTS): $(LIBSPATH)/$$(notdir $$(patsubst %/,%,$$(dir $$@)))/$$(notd
 
 $(TARGET).elf: $(OBJECTS) $(LDSCRIPT)
 	@echo "[LD]    $@"
-	@$(CC) $(LDFLAGS) -o "$@" $(OBJECTS) $(LIBS)
+	$(CC) $(LDFLAGS) -o "$@" $(OBJECTS) $(LIBS)
 
 %.hex: %.elf
 	@echo "[HEX]   $@"
