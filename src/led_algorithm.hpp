@@ -1,5 +1,5 @@
-#ifndef TEENSY_POI_LEGALGO_HPP
-#define TEENSY_POI_LEGALGO_HPP
+#ifndef TEENSY_POI_LEDALGO_HPP
+#define TEENSY_POI_LEDALGO_HPP
 
 #include <algorithm>
 
@@ -9,14 +9,14 @@
 
 namespace tp {
 
-	template< size_t Start, size_t Count, typename Colors >
+	template< size_t Start, size_t Count, uint32_t OffColor, uint32_t OnColor >
 	struct LedProgress
 	{
 		template< typename Pixels >
 		static void progress( Pixels& pixels, size_t value )
 		{
-			std::fill( &pixels[ Start ], &pixels[ Start + value ], LedPixel( Colors::colorOn ) );
-			std::fill( &pixels[ Start + value ], &pixels[ Start + Count ], LedPixel( Colors::colorOff ) );
+			std::fill( &pixels[ Start ], &pixels[ Start + value ], LedPixel( OnColor ) );
+			std::fill( &pixels[ Start + value ], &pixels[ Start + Count ], LedPixel( OffColor ) );
 		}
 
 		template< typename Pixels >
@@ -27,32 +27,36 @@ namespace tp {
 	};
 
 
-	template< uint32_t Runtime, typename Colors >
+	template< uint32_t Runtime, uint32_t MinColor, uint32_t MaxColor >
 	struct LedFadeAnimation
 	{
-		static LedPixel animate( uint32_t position )
+		static constexpr uint32_t runtime = Runtime;
+		static constexpr LedPixel colorMin = MinColor;
+		static constexpr LedPixel colorMax = MaxColor;
+
+		static constexpr LedPixel animate( uint32_t position )
 		{
-			position %= Runtime;
-			uint8_t state = ( position < Runtime / 2 ? position : 2 * Runtime - position - 1 ) * 255 / ( Runtime - 1 );
+			position %= runtime;
+			uint8_t state = ( position < runtime / 2 ? position : 2 * runtime - position - 1 ) * 255 / ( runtime - 1 );
 			return LedPixel(
-					Colors::colorMin.r + state * ( Colors::colorMax.r - Colors::colorMin.r ) / 255,
-					Colors::colorMin.g + state * ( Colors::colorMax.g - Colors::colorMin.g ) / 255,
-					Colors::colorMin.b + state * ( Colors::colorMax.b - Colors::colorMin.b ) / 255 );
+					colorMin.r + state * ( colorMax.r - colorMin.r ) / 255,
+					colorMin.g + state * ( colorMax.g - colorMin.g ) / 255,
+					colorMin.b + state * ( colorMax.b - colorMin.b ) / 255 );
 		}
 	};
 
 
-	template< uint32_t OffTime, uint32_t OnTime, typename Colors >
+	template< uint32_t OffTime, uint32_t OnTime, uint32_t OffColor, uint32_t OnColor >
 	struct LedFlashAnimation
 	{
 		static constexpr uint32_t runtime = OnTime + OffTime;
 
-		static LedPixel animate( uint32_t position )
+		static constexpr LedPixel animate( uint32_t position )
 		{
-			return position % runtime >= OffTime ? LedPixel( Colors::colorOn ) : LedPixel( Colors::colorOff );
+			return position % runtime >= OffTime ? OnColor : OffColor;
 		}
 	};
 
 } // namespace tp
 
-#endif // TEENSY_POI_LEGALGO_HPP
+#endif // TEENSY_POI_LEDALGO_HPP

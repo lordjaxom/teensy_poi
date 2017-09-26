@@ -8,55 +8,6 @@
 
 namespace tp {
 
-	namespace ModeProgramDetail {
-
-		struct ReadyColors
-		{
-			static constexpr LedPixel colorMin = LedColor::BLACK;
-			static constexpr LedPixel colorMax = LedColor::BLUE;
-		};
-
-		using ReadyAnimation = LedFadeAnimation< 2000000, ReadyColors >;
-
-
-		struct WorkingColors
-		{
-			static constexpr LedPixel colorOn = LedColor::DIM_YELLOW;
-			static constexpr LedPixel colorOff = LedColor::DIM_CYAN;
-		};
-
-		using WorkingAnimation = LedFlashAnimation< 50000, 50000, WorkingColors >;
-
-
-		struct ChargingColors
-		{
-			static constexpr LedPixel colorOn = LedColor::DIM_PURPLE;
-			static constexpr LedPixel colorOff = LedColor::BLACK;
-		};
-
-		using ChargingAnimation = LedFlashAnimation< 950000, 50000, ChargingColors >;
-
-
-		struct BatteryColors
-		{
-			static constexpr LedPixel colorOn = LedColor::DIM_CYAN;
-			static constexpr LedPixel colorOff = LedColor::FAINT_CYAN;
-		};
-
-		using BatteryProgress = LedProgress< 6, 10, BatteryColors >;
-
-
-		struct VoltageColors
-		{
-			static constexpr LedPixel colorOn = LedColor::DIM_PURPLE;
-			static constexpr LedPixel colorOff = LedColor::FAINT_PURPLE;
-		};
-
-		template< size_t Start >
-		using VoltageProgress = LedProgress< Start, 10, VoltageColors >;
-
-	} // namespace ModeProgramDetail
-
     template< typename Manager >
     class ModeProgram
     {
@@ -69,6 +20,12 @@ namespace tp {
 
         using IoServiceType = IoService< usBetweenUpdates, USBSerial >;
         using USBSerialType = USBSerial< IoServiceType >;
+
+        using ReadyAnimation = LedFadeAnimation< 2000000, LedColor::BLACK, LedColor::BLUE >;
+        using WorkingAnimation = LedFlashAnimation< 50000, 50000, LedColor::DIM_CYAN, LedColor::DIM_YELLOW >;
+        using ChargingAnimation = LedFlashAnimation< 950000, 50000, LedColor::BLACK, LedColor::DIM_PURPLE >;
+        using BatteryProgress = LedProgress< 6, 10, LedColor::FAINT_CYAN, LedColor::DIM_CYAN >;
+        template< size_t Start > using VoltageProgress = LedProgress< Start, 10, LedColor::FAINT_PURPLE, LedColor::DIM_PURPLE >;
 
     public:
         explicit ModeProgram( Manager const& manager )
@@ -112,12 +69,12 @@ namespace tp {
                 auto&& pixels = leds_.pixels();
                 auto timestamp = manager_.stopwatch().timestamp();
 
-                pixels[ 0 ] = ModeProgramDetail::ReadyAnimation::animate( timestamp );
+                pixels[ 0 ] = ReadyAnimation::animate( timestamp );
                 pixels[ 1 ] = manager_.status().connected() ? LedColor::DIM_GREEN : LedColor::BLACK;
-                pixels[ 2 ] = active_ ? ModeProgramDetail::WorkingAnimation::animate( timestamp ) : LedColor::BLACK;
-                pixels[ 3 ] = manager_.status().charging() ? ModeProgramDetail::ChargingAnimation::animate( timestamp ) : LedColor::BLACK;
+                pixels[ 2 ] = active_ ? WorkingAnimation::animate( timestamp ) : LedColor::BLACK;
+                pixels[ 3 ] = manager_.status().charging() ? ChargingAnimation::animate( timestamp ) : LedColor::BLACK;
 
-                ModeProgramDetail::BatteryProgress::percentage( pixels, manager_.status().percentage() );
+                BatteryProgress::percentage( pixels, manager_.status().percentage() );
 
 #if 0
                 auto voltage = manager_.status().voltage();

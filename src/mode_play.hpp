@@ -10,23 +10,12 @@
 
 namespace tp {
 
-	namespace ModePlayDetail {
-
-		struct ErrorColors
-		{
-			static constexpr LedPixel colorOn = LedColor::DIM_RED;
-			static constexpr LedPixel colorOff = LedColor::BLACK;
-		};
-
-		using ErrorAnimation = LedFlashAnimation< 500000, 500000, ErrorColors >;
-
-	} // namespace ModePlayDetail
-
-
 	template< typename Manager >
 	class ModePlay
 	{
 		static constexpr auto pixelCount = Manager::Leds::pixelCount;
+
+        using ErrorAnimation = LedFlashAnimation< 500000, 500000, LedColor::BLACK, LedColor::DIM_RED >;
 
 	public:
 		explicit ModePlay( Manager const& manager )
@@ -49,9 +38,9 @@ namespace tp {
 		    if ( !motion_ || !flash_ || !image_ ) {
                 auto& pixels = leds_.pixels();
                 auto timestamp = manager_.stopwatch().timestamp();
-                pixels[ 0 ] = !motion_ ? ModePlayDetail::ErrorAnimation::animate( timestamp ) : LedColor::BLACK;
-                pixels[ 1 ] = !flash_ ? ModePlayDetail::ErrorAnimation::animate( timestamp ) : LedColor::BLACK;
-                pixels[ 2 ] = !image_ ? ModePlayDetail::ErrorAnimation::animate( timestamp ) : LedColor::BLACK;
+                pixels[ 0 ] = !motion_ ? ErrorAnimation::animate( timestamp ) : LedColor::BLACK;
+                pixels[ 1 ] = !flash_ ? ErrorAnimation::animate( timestamp ) : LedColor::BLACK;
+                pixels[ 2 ] = !image_ ? ErrorAnimation::animate( timestamp ) : LedColor::BLACK;
                 leds_.send();
                 return;
 		    }

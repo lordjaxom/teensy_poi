@@ -49,31 +49,31 @@ namespace tp {
 
 	namespace LedColor {
 
-		static constexpr LedPixel BLACK( 0x00, 0x00, 0x00 );
+		static constexpr uint32_t BLACK = 0x000000;
 
-		static constexpr LedPixel RED( 0xff, 0x00, 0x00 );
-		static constexpr LedPixel GREEN( 0x00, 0xff, 0x00 );
-		static constexpr LedPixel BLUE( 0x00, 0x00, 0xff );
-		static constexpr LedPixel YELLOW( 0xff, 0xff, 0x00 );
-		static constexpr LedPixel PURPLE( 0xff, 0x00, 0xff );
-		static constexpr LedPixel CYAN( 0x00, 0xff, 0xff );
-		static constexpr LedPixel WHITE( 0xff, 0xff, 0xff );
+		static constexpr uint32_t RED = 0xff0000;
+		static constexpr uint32_t GREEN = 0x00ff00;
+		static constexpr uint32_t BLUE = 0x0000ff;
+		static constexpr uint32_t YELLOW = 0xffff00;
+		static constexpr uint32_t PURPLE = 0xff00ff;
+		static constexpr uint32_t CYAN = 0x00ffff;
+		static constexpr uint32_t WHITE = 0xffffff;
 
-		static constexpr LedPixel DIM_RED( 0x24, 0x00, 0x00 );
-		static constexpr LedPixel DIM_GREEN( 0x00, 0x24, 0x00 );
-		static constexpr LedPixel DIM_BLUE( 0x00, 0x00, 0x24 );
-		static constexpr LedPixel DIM_YELLOW( 0x24, 0x24, 0x00 );
-		static constexpr LedPixel DIM_PURPLE( 0x24, 0x00, 0x24 );
-		static constexpr LedPixel DIM_CYAN( 0x00, 0x24, 0x24 );
-		static constexpr LedPixel DIM_WHITE( 0x24, 0x24, 0x24 );
+		static constexpr uint32_t DIM_RED = 0x240000;
+		static constexpr uint32_t DIM_GREEN = 0x002400;
+		static constexpr uint32_t DIM_BLUE = 0x000024;
+		static constexpr uint32_t DIM_YELLOW = 0x242400;
+		static constexpr uint32_t DIM_PURPLE = 0x240024;
+		static constexpr uint32_t DIM_CYAN = 0x002424;
+		static constexpr uint32_t DIM_WHITE = 0x242424;
 
-		static constexpr LedPixel FAINT_RED( 0x01, 0x00, 0x00 );
-		static constexpr LedPixel FAINT_GREEN( 0x00, 0x01, 0x00 );
-		static constexpr LedPixel FAINT_BLUE( 0x00, 0x00, 0x01 );
-		static constexpr LedPixel FAINT_YELLOW( 0x01, 0x01, 0x00 );
-		static constexpr LedPixel FAINT_PURPLE( 0x01, 0x00, 0x01 );
-		static constexpr LedPixel FAINT_CYAN( 0x00, 0x01, 0x01 );
-		static constexpr LedPixel FAINT_WHITE( 0x01, 0x01, 0x01 );
+		static constexpr uint32_t FAINT_RED = 0x010000;
+		static constexpr uint32_t FAINT_GREEN = 0x000100;
+		static constexpr uint32_t FAINT_BLUE = 0x000001;
+		static constexpr uint32_t FAINT_YELLOW = 0x010100;
+		static constexpr uint32_t FAINT_PURPLE = 0x010001;
+		static constexpr uint32_t FAINT_CYAN = 0x000101;
+		static constexpr uint32_t FAINT_WHITE = 0x010101;
 
 	} // namespace LedColor
 

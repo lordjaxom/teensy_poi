@@ -6,35 +6,18 @@
 
 namespace tp {
 
-	namespace SelftestDetail {
-
-		struct BootColors
-		{
-			static constexpr LedPixel colorMin = LedColor::BLACK;
-			static constexpr LedPixel colorMax = LedColor::RED;
-		};
-
-		using BootAnimation = LedFadeAnimation< 100, BootColors >;
-
-
-		struct BatteryColors
-		{
-			static constexpr LedPixel colorOn = LedColor::DIM_CYAN;
-			static constexpr LedPixel colorOff = LedColor::FAINT_CYAN;
-		};
-
-		using BatteryProgress = LedProgress< 6, 10, BatteryColors >;
-
-	} // namespace SelftestDetail
-
 	template< typename Manager >
 	static void selftest( Manager& manager )
 	{
 		typename Manager::Leds leds;
+
+		using BootAnimation = LedFadeAnimation< 100, LedColor::BLACK, LedColor::RED >;
+		using BatteryProgress = LedProgress< 6, 10, LedColor::FAINT_CYAN, LedColor::DIM_CYAN >;
+
 		auto&& pixels = leds.pixels();
 
 		for ( uint16_t i = 0 ; i < 100 ; ++i ) {
-			pixels[ 0 ] = SelftestDetail::BootAnimation::animate( i );
+			pixels[ 0 ] = BootAnimation::animate( i );
 			leds.send();
 			delay( 10 );
 		}
@@ -88,7 +71,7 @@ namespace tp {
 
 		auto percent = manager.status().percentage();
 		debugn( "Battery is ", percent, "% full" );
-		SelftestDetail::BatteryProgress::percentage( pixels, percent );
+		BatteryProgress::percentage( pixels, percent );
 		leds.send();
 
 		debug( "...done!" );
